@@ -1,5 +1,6 @@
 "use strict";
 
+const { blue } = require("./utils");
 let exerciseUtils = require("./utils");
 
 let args = process.argv.slice(2).map(function (st) {
@@ -31,19 +32,29 @@ function problemA() {
   // Tu código acá:
   
   //Codigo normal
-  // exerciseUtils.promisifiedReadFile("poem-two/stanza-01.txt")
-  // .then(
-  //   (stanza)=>{
-  //     exerciseUtils.blue(stanza)
-  //   }
-  // )
+  exerciseUtils.promisifiedReadFile("poem-two/stanza-01.txt")
+  .then(
+    (stanza)=>{
+      exerciseUtils.blue(stanza)
+    }
+  )
 
-  // exerciseUtils.promisifiedReadFile("poem-two/stanza-02.txt")
-  // .then(
-  //   (stanza)=>{
-  //     exerciseUtils.blue(stanza)
-  //   }
-  // )
+  exerciseUtils.promisifiedReadFile("poem-two/stanza-02.txt")
+  .then(
+    (stanza)=>{
+      exerciseUtils.blue(stanza)
+    }
+  )
+  // Promise.all([
+  //   exerciseUtils.promisifiedReadFile("poem-two/stanza-01.txt"),
+  //   exerciseUtils.promisifiedReadFile("poem-two/stanza-02.txt")
+  // ])
+  // .then((stanzas)=>{
+  //   stanzas.forEach(element => {
+  //     exerciseUtils.blue(element);
+  //   });
+  // })
+  
 }
 
 function problemB() {
@@ -52,14 +63,37 @@ function problemB() {
   });
 
   // callback version
-  filenames.forEach((filename) => {
-    exerciseUtils.readFile(filename, function (err, stanza) {
-      exerciseUtils.blue(stanza);
-    });
-  });
+  // filenames.forEach((filename) => {
+  //   exerciseUtils.readFile(filename, function (err, stanza) {
+  //     exerciseUtils.blue(stanza);
+  //   });
+  // });
 
   // promise version
   // Tu código acá:
+
+  filenames.forEach((filename)=> {
+    exerciseUtils.promisifiedReadFile(filename)
+    .then((stanza)=>{exerciseUtils.blue(stanza)})
+  })
+
+  console.log('done');
+
+  //WITH promice all 
+  // Promise.all([
+  //   exerciseUtils.promisifiedReadFile("poem-two/stanza-01.txt"),
+  //   exerciseUtils.promisifiedReadFile("poem-two/stanza-02.txt"),
+  //   exerciseUtils.promisifiedReadFile("poem-two/stanza-03.txt"),
+  //   exerciseUtils.promisifiedReadFile("poem-two/stanza-04.txt"),
+  //   exerciseUtils.promisifiedReadFile("poem-two/stanza-05.txt"),
+  //   exerciseUtils.promisifiedReadFile("poem-two/stanza-06.txt"),
+  //   exerciseUtils.promisifiedReadFile("poem-two/stanza-07.txt"),
+  //   exerciseUtils.promisifiedReadFile("poem-two/stanza-08.txt"),
+  // ])
+  // .then((stanzas)=> {
+  //   stanzas.forEach((el)=> exerciseUtils.blue(el))
+  //   console.log('done');
+  // })
 }
 
 function problemC() {
@@ -70,15 +104,26 @@ function problemC() {
   filenames[randIdx] = "wrong-file-name-" + (randIdx + 1) + ".txt";
 
   // callback version
-  filenames.forEach((filename) => {
-    exerciseUtils.readFile(filename, function (err, stanza) {
-      exerciseUtils.blue(stanza);
-      if (err) exerciseUtils.magenta(new Error(err));
-    });
-  });
+  // filenames.forEach((filename) => {
+  //   exerciseUtils.readFile(filename, function (err, stanza) {
+  //     exerciseUtils.blue(stanza);
+  //     if (err) exerciseUtils.magenta(new Error(err));
+  //   });
+  // });
 
   // promise version
   // Tu código acá:
+  filenames.forEach((filename)=> {
+    exerciseUtils.promisifiedReadFile(filename)
+    .then(
+      (stanza)=>{
+        exerciseUtils.blue(stanza)
+      },
+      (err)=>{
+        exerciseUtils.magenta(new Error(err))
+      } 
+    )
+  }) 
 }
 
 function problemD() {
