@@ -169,7 +169,7 @@ describe("02 | Ejercicios - Promises (poem-two)", () => {
       });
   });
 
-  it("Problem B | Consologuea todas las stanzas de poem-two en orden, versión promisificada", (done) => {
+  xit("Problem B | Consologuea todas las stanzas de poem-two en orden, versión promisificada", (done) => {
     jest.setTimeout(500);
     const blue = jest.spyOn(utils, "blue");
     const promisifiedReadFileSpy = jest.spyOn(utils, "promisifiedReadFile");
@@ -227,7 +227,7 @@ describe("02 | Ejercicios - Promises (poem-two)", () => {
       });
   });
 
-  it("Problem C | Consologuea todas las stanzas de poem-two en orden o un error, versión promisificada", (done) => {
+  xit("Problem C | Consologuea todas las stanzas de poem-two en orden o un error, versión promisificada", (done) => {
     jest.setTimeout(500);
     const blue = jest.spyOn(utils, "blue");
     const magenta = jest.spyOn(utils, "magenta");

@@ -20,15 +20,30 @@ args.forEach(function (arg) {
 
 function problemA() {
   // callback version
-  exerciseUtils.readFile("poem-two/stanza-01.txt", function (err, stanza) {
-    exerciseUtils.blue(stanza);
-  });
-  exerciseUtils.readFile("poem-two/stanza-02.txt", function (err, stanza) {
-    exerciseUtils.blue(stanza);
-  });
+  // exerciseUtils.readFile("poem-two/stanza-01.txt", function (err, stanza) {
+  //   exerciseUtils.blue(stanza);
+  // });
+  // exerciseUtils.readFile("poem-two/stanza-02.txt", function (err, stanza) {
+  //   exerciseUtils.blue(stanza);
+  // });
 
   // promise version
   // Tu código acá:
+  
+  //Codigo normal
+  // exerciseUtils.promisifiedReadFile("poem-two/stanza-01.txt")
+  // .then(
+  //   (stanza)=>{
+  //     exerciseUtils.blue(stanza)
+  //   }
+  // )
+
+  // exerciseUtils.promisifiedReadFile("poem-two/stanza-02.txt")
+  // .then(
+  //   (stanza)=>{
+  //     exerciseUtils.blue(stanza)
+  //   }
+  // )
 }
 
 function problemB() {
