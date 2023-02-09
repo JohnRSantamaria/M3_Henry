@@ -1,5 +1,7 @@
 "use strict";
 
+const { reject } = require("async");
+const { resolve } = require("path");
 const { blue } = require("./utils");
 let exerciseUtils = require("./utils");
 
@@ -113,22 +115,40 @@ function problemC() {
 
   // promise version
   // Tu código acá:
+  
+  //  Sin el catch
+  // filenames.forEach((filename)=> {
+  //   exerciseUtils.promisifiedReadFile(filename)
+  //   .then(
+  //     (stanza)=>{
+  //       exerciseUtils.blue(stanza)
+  //     },
+  //     (err)=>{
+  //       exerciseUtils.magenta(new Error(err))
+  //     } 
+  //   )
+  // }) 
   filenames.forEach((filename)=> {
-    exerciseUtils.promisifiedReadFile(filename)
-    .then(
-      (stanza)=>{
-        exerciseUtils.blue(stanza)
-      },
-      (err)=>{
-        exerciseUtils.magenta(new Error(err))
-      } 
-    )
-  }) 
+      exerciseUtils.promisifiedReadFile(filename)
+      .then(
+        (stanza)=>{
+          exerciseUtils.blue(stanza)
+        } 
+      ).catch((err)=> exerciseUtils.magenta(new Error(err)))
+    })
 }
 
 function problemD() {
   let fs = require("fs");
   function promisifiedWriteFile(filename, str) {
     // tu código acá:
+    return new Promise(
+      function(resolve,reject){
+        fs.writeFile(filename,str,(err)=>{
+          if(err) return reject(err);
+          resolve(filename)
+        })
+      }
+    )
   }
 }

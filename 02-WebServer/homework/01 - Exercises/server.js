@@ -15,8 +15,8 @@ const server = http
         }
         res.writeHead(200, { "content-type": "application/json" });
         res.end(data);
-        return;
-        });
+      });
+      return;
       }
 
     else if (req.url === "/allDogs") {
