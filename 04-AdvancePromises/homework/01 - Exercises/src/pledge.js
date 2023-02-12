@@ -23,6 +23,10 @@ function $Promise(executor) {
     }
   };
 
+  this.catch = (errorHandler)=> {
+    return this.then(null, errorHandler);
+  }
+
   const resolve = (data) => this._internalResolve(data);
   const reject = (reason) => this._internalReject(reason);
 
@@ -53,8 +57,13 @@ $Promise.prototype.then = function (successHandler, succressError) {
   };
 
   this._handlerGroups.push(handerGroup);
-  this._state !== 'pending' && this.callHandlers(this._value  );
+  this._state !== 'pending' && this.callHandlers(this._value);
+
+  return new $Promise(()=>{});
 };
+
+
+
 module.exports = $Promise;
 /*-------------------------------------------------------
 El spec fue diseñado para funcionar con Test'Em, por lo tanto no necesitamos
