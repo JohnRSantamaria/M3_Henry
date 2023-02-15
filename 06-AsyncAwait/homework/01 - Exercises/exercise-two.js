@@ -1,5 +1,7 @@
 "use strict";
 
+const { forEach } = require("async");
+const { blue, promisifiedReadFile } = require("./utils");
 let exerciseUtils = require("./utils");
 
 let args = process.argv.slice(2).map(function (st) {
@@ -30,6 +32,11 @@ async function problemA() {
 
   // async await version
   // Tu código acá:
+  const stanza = await exerciseUtils.promisifiedReadFile("poem-two/stanza-01.txt")
+  exerciseUtils.blue(stanza)
+
+  const stanza2 = await exerciseUtils.promisifiedReadFile("poem-two/stanza-02.txt")
+  exerciseUtils.blue(stanza2)
 }
 
 async function problemB() {
@@ -43,9 +50,12 @@ async function problemB() {
       exerciseUtils.blue(stanza);
     });
   });
-
   // async await version
   // Tu código acá:
+  filenames.forEach(filename => {
+    exerciseUtils.promisifiedReadFile(filename)
+    .then(file=>exerciseUtils.blue(file))
+  })
 }
 
 async function problemC() {
@@ -62,6 +72,10 @@ async function problemC() {
 
   // async await version
   // Tu código acá:
+  filenames.forEach(filename => {
+    exerciseUtils.promisifiedReadFile(filename)
+    .then(file=>exerciseUtils.blue(file))
+  })
 }
 
 async function problemD() {
@@ -81,4 +95,14 @@ async function problemD() {
 
   // async await version
   // Tu código acá:
+  try {
+    for(const file of filenames){
+      const stanza = await exerciseUtils.promisifiedReadFile(file);
+      exerciseUtils.blue(stanza)
+    }  
+  } catch (error) {
+    exerciseUtils.magenta(error)
+  }
+  
+  
 }
