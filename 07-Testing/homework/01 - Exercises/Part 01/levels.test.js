@@ -23,7 +23,7 @@ describe('PARTE 01', () => {
       it('Debe devolver el string correspondiente si el length es mayor a dos', () => {
          expect(levelTwo('aaaa')).toBe('aa');
          expect(levelTwo('abgdg')).toBe('agg');
-         expect(levelTwo('abbsbbbdl')).toBe('abbbl');
+         expect(levelTwo('abbsbbbdl')).toBe('abbbl'); //a b b s b b b d l → abbbl
       });
    });
    describe('NIVEL 03', () => {
